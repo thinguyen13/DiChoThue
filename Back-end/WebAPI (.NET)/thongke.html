@@ -1,0 +1,223 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thống kê</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+
+    <style>
+      table {
+          table-layout: fixed;
+          word-wrap: break-word;
+      }
+  </style>
+    
+    <script>
+      $(document).ready(function()
+      {
+        loadCombobox_MaLoaiSP();
+        loadCombobox_MaSP();
+        loadCombobox_MaNCC();
+
+        $("#btn").click(function()
+        {
+          var Table = document.getElementById("tdata");
+          Table.innerHTML = "";
+
+          var maloaisp = document.getElementById("maloaisp-dropdown").value;
+          maloaisp = maloaisp.slice(0, maloaisp.indexOf(" - "));
+          var masp = document.getElementById("masp-dropdown").value;
+          masp = masp.slice(0, masp.indexOf(" - "));
+          var mancc = document.getElementById("mancc-dropdown").value;
+          mancc = mancc.slice(0, mancc.indexOf(" - "));
+
+          var links = "";
+
+          // Load tất cả danh sách thống kê
+          if (maloaisp == 0 && masp == 0 && mancc == 0)
+          {
+            links = "https://localhost:44357/api/MatHangThietYeu";
+          }
+
+          if (maloaisp != 0 && masp != 0 && mancc != 0)
+          {
+            links = "https://localhost:44357/api/MatHangThietYeu/"
+            + maloaisp.toString() + "/"
+            + masp.toString() + "/"
+            + mancc.toString();
+          }
+          
+          if (maloaisp != 0)
+          {
+            // Load thống kê theo 1 ĐIỀU KIỆN LỌC
+            if (masp == 0 && mancc == 0)
+            {
+              links = "https://localhost:44357/api/MatHangThietYeu/LoaiSanPham/" 
+              + maloaisp.toString();
+            }
+            // Load thống kê theo 2 ĐIỀU KIỆN LỌC
+            // Lọc theo MaLoaiSP và MaSP
+            else if (masp != 0 && mancc == 0)
+            {
+              links = "https://localhost:44357/api/MatHangThietYeuOption/LoaiSanPham_SanPham/" 
+              + maloaisp.toString() + "/" + masp.toString();
+            }
+            // Lọc theo MaLoaiSP và MaNCC
+            else if (masp == 0 && mancc != 0)
+            {
+              links = "https://localhost:44357/api/MatHangThietYeuOption/LoaiSanPham_NhaCungCap/" 
+              + maloaisp.toString() + "/" + mancc.toString();
+            }
+          }
+          else
+          {
+            // Load thống kê theo 2 ĐIỀU KIỆN LỌC   
+            if (masp != 0 && mancc != 0)
+            {
+              links = "https://localhost:44357/api/MatHangThietYeuOption/SanPham_NhaCungCap/" 
+              + masp.toString() + "/" + mancc.toString();
+            }
+            // Load thống kê theo 1 ĐIỀU KIỆN LỌC
+            // Lọc theo MaSP
+            else if (masp != 0 && mancc == 0)
+            {
+              links = "https://localhost:44357/api/MatHangThietYeu/SanPham/" 
+              + masp.toString();
+            }
+            // Lọc theo MaNCC
+            else if (masp == 0 && mancc != 0)
+            {
+              links = "https://localhost:44357/api/MatHangThietYeu/NhaCungCap/" 
+              + mancc.toString();
+            }
+          }
+          Show(links); 
+        })
+      })
+      
+      // Load data vào Table
+      function Show(links)
+      {
+        $.get(links, 
+          function(data, status){
+            console.log(JSON.parse(JSON.stringify(data)));
+            var data = JSON.parse(JSON.stringify(data));
+
+            data.forEach(function(dt) 
+            {
+              $("#tdata").append("<tr>" + 
+                  "<td>" + dt.TenLoaiSP + "</td>" + 
+                  "<td>" + dt.TenSP + "</td>" + 
+                  "<td>" + dt.TenNCC + "</td>" + 
+                  "<td>" + dt.DonViTinh + "</td>" + 
+                  "<td>" + dt.NSX + "</td>" + 
+                  "<td>" + dt.Gia + "</td>" + 
+                + "</tr>");
+            });
+          });
+      }
+
+      // Load data vào Combobox Loại sản phẩm
+      function loadCombobox_MaLoaiSP()
+      {
+        $("#maloaisp-dropdown").append("<option selected=\"true\">0 - All</option>");
+
+        $.get("https://localhost:44357/api/LoaiSanPham", function(data, status){
+            console.log(JSON.parse(JSON.stringify(data)));
+            var data = JSON.parse(JSON.stringify(data));
+
+            data.forEach(function(dt) 
+            {
+              $("#maloaisp-dropdown").append("<option>" + dt.MaLoaiSP + " - " + dt.TenLoaiSP + "</option>");
+            });
+          });
+      }
+
+      // Load data vào Combobox Sản phẩm
+      function loadCombobox_MaSP(obj)
+      {
+        $("#masp-dropdown").empty();
+        $("#masp-dropdown").append("<option selected=\"true\">0 - All</option>");
+
+        var maloaisp = document.getElementById("maloaisp-dropdown").value;
+        maloaisp = maloaisp.slice(0, maloaisp.indexOf(" - "));
+  
+        $.get("https://localhost:44357/api/SanPham/" + 
+        maloaisp.toString()
+        , function(data, status){
+            console.log(JSON.parse(JSON.stringify(data)));
+            var data = JSON.parse(JSON.stringify(data));
+
+            data.forEach(function(dt) 
+            {
+              $("#masp-dropdown").append("<option>" + dt.MaSP + " - " + dt.TenSP + "</option>");
+            });
+          });
+      }
+
+      // Load data vào Combobox Nhà cung cấp
+      function loadCombobox_MaNCC()
+      {
+        $("#mancc-dropdown").append("<option selected=\"true\">0 - All</option>");
+        $.get("https://localhost:44357/api/NhaCungCap", function(data, status){
+            console.log(JSON.parse(JSON.stringify(data)));
+            var data = JSON.parse(JSON.stringify(data));
+
+            data.forEach(function(dt) 
+            {
+              $("#mancc-dropdown").append("<option>" + dt.MaNCC + " - " + dt.TenNCC + "</option>");
+            });
+          });
+      }
+    </script>
+
+</head>
+
+
+<h1> THỐNG KÊ MẶT HÀNG THIẾT YẾU </h1>
+<hr>
+<h6>Loại sản phẩm:</h6>
+<select id="maloaisp-dropdown" style="width: 150px; height: 30px;" onchange="loadCombobox_MaSP(this)">
+</select>
+<br/>
+<h6>Sản phẩm:</h6>
+<select id="masp-dropdown"  style="width: 150px; height: 30px;">
+</select>
+<br/>
+<h6>Nhà cung cấp:</h6>
+<select id="mancc-dropdown" style="width: 150px; height: 30px;">
+</select>
+
+<button id="btn" v-on:click ="fetchAPIData" style="width: 100px; height: 30px;"> Xem </button>
+
+<div class="container">
+  <div class="row">
+      <div class="col-8 offset-md-1 mt-5">
+          <table class="table table-striped table-bordered  table-responsive-lg " id="Table">
+              <thead>
+                  <tr>
+                      <th class="bg-success text-white">Tên loại SP</th>
+                      <th class="bg-success text-white">Tên sản phẩm</th>
+                      <th class="bg-success text-white">Tên nhà cung cấp</th>
+                      <th class="bg-success text-white">Đơn vị tính</th>
+                      <th class="bg-success text-white">NSX</th>
+                      <th class="bg-success text-white">Giá</th>
+                  </tr>
+              </thead>
+              <tbody id="tdata">
+
+              </tbody>
+          </table>
+      </div>
+  </div>
+</div>
+</html>
