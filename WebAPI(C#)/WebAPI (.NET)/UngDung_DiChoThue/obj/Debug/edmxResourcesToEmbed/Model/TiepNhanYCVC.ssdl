@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TiepNhanYCVCModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="DonHang">
+    <Key>
+      <PropertyRef Name="MaDH" />
+    </Key>
+    <Property Name="MaDH" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NgayLap" Type="datetime" />
+    <Property Name="TongTien" Type="float" />
+    <Property Name="TrangThai" Type="nvarchar" MaxLength="50" />
+    <Property Name="MaKH" Type="int" Nullable="false" />
+    <Property Name="HinhThucThanhToan" Type="nvarchar" MaxLength="50" />
+    <Property Name="MaDVVC" Type="int" Nullable="false" />
+    <Property Name="PhiVanChuyen" Type="float" />
+  </EntityType>
+  <EntityType Name="DonViVanChuyen">
+    <Key>
+      <PropertyRef Name="MaDVVC" />
+    </Key>
+    <Property Name="MaDVVC" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenDVVC" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="GiayPhepKinhDoanh" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="SoTaiKhoanNganHang" Type="varchar" MaxLength="50" />
+    <Property Name="SDT" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="DiaChi" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="PhiVanChuyen_KM" Type="float" />
+    <Property Name="TaiKhoan" Type="int" />
+  </EntityType>
+  <EntityType Name="KhachHang">
+    <Key>
+      <PropertyRef Name="MaKH" />
+    </Key>
+    <Property Name="MaKH" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenKH" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="NgaySinh" Type="datetime" />
+    <Property Name="SDT" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="DiaChi" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="CMND" Type="varchar" MaxLength="20" />
+    <Property Name="MaLoaiKH" Type="int" />
+    <Property Name="TaiKhoan" Type="int" />
+  </EntityType>
+  <Association Name="FK__DonHang__MaDVVC__60A75C0F">
+    <End Role="DonViVanChuyen" Type="Self.DonViVanChuyen" Multiplicity="1" />
+    <End Role="DonHang" Type="Self.DonHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DonViVanChuyen">
+        <PropertyRef Name="MaDVVC" />
+      </Principal>
+      <Dependent Role="DonHang">
+        <PropertyRef Name="MaDVVC" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DonHang__MaKH__619B8048">
+    <End Role="KhachHang" Type="Self.KhachHang" Multiplicity="1" />
+    <End Role="DonHang" Type="Self.DonHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KhachHang">
+        <PropertyRef Name="MaKH" />
+      </Principal>
+      <Dependent Role="DonHang">
+        <PropertyRef Name="MaKH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TiepNhanYCVCModelStoreContainer">
+    <EntitySet Name="DonHang" EntityType="Self.DonHang" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DonViVanChuyen" EntityType="Self.DonViVanChuyen" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KhachHang" EntityType="Self.KhachHang" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__DonHang__MaDVVC__60A75C0F" Association="Self.FK__DonHang__MaDVVC__60A75C0F">
+      <End Role="DonViVanChuyen" EntitySet="DonViVanChuyen" />
+      <End Role="DonHang" EntitySet="DonHang" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DonHang__MaKH__619B8048" Association="Self.FK__DonHang__MaKH__619B8048">
+      <End Role="KhachHang" EntitySet="KhachHang" />
+      <End Role="DonHang" EntitySet="DonHang" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

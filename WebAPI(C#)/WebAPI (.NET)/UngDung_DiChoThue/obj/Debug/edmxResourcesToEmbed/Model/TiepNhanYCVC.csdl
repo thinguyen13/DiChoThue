@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TiepNhanYCVCModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="DonHang">
+    <Key>
+      <PropertyRef Name="MaDH" />
+    </Key>
+    <Property Name="MaDH" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NgayLap" Type="DateTime" Precision="3" />
+    <Property Name="TongTien" Type="Double" />
+    <Property Name="TrangThai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MaKH" Type="Int32" Nullable="false" />
+    <Property Name="HinhThucThanhToan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MaDVVC" Type="Int32" Nullable="false" />
+    <Property Name="PhiVanChuyen" Type="Double" />
+    <NavigationProperty Name="DonViVanChuyen" Relationship="Self.FK__DonHang__MaDVVC__60A75C0F" FromRole="DonHang" ToRole="DonViVanChuyen" />
+    <NavigationProperty Name="KhachHang" Relationship="Self.FK__DonHang__MaKH__619B8048" FromRole="DonHang" ToRole="KhachHang" />
+  </EntityType>
+  <EntityType Name="DonViVanChuyen">
+    <Key>
+      <PropertyRef Name="MaDVVC" />
+    </Key>
+    <Property Name="MaDVVC" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenDVVC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="GiayPhepKinhDoanh" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="SoTaiKhoanNganHang" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SDT" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DiaChi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PhiVanChuyen_KM" Type="Double" />
+    <Property Name="TaiKhoan" Type="Int32" />
+    <NavigationProperty Name="DonHangs" Relationship="Self.FK__DonHang__MaDVVC__60A75C0F" FromRole="DonViVanChuyen" ToRole="DonHang" />
+  </EntityType>
+  <EntityType Name="KhachHang">
+    <Key>
+      <PropertyRef Name="MaKH" />
+    </Key>
+    <Property Name="MaKH" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenKH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NgaySinh" Type="DateTime" Precision="3" />
+    <Property Name="SDT" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DiaChi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CMND" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="MaLoaiKH" Type="Int32" />
+    <Property Name="TaiKhoan" Type="Int32" />
+    <NavigationProperty Name="DonHangs" Relationship="Self.FK__DonHang__MaKH__619B8048" FromRole="KhachHang" ToRole="DonHang" />
+  </EntityType>
+  <Association Name="FK__DonHang__MaDVVC__60A75C0F">
+    <End Role="DonViVanChuyen" Type="Self.DonViVanChuyen" Multiplicity="1" />
+    <End Role="DonHang" Type="Self.DonHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DonViVanChuyen">
+        <PropertyRef Name="MaDVVC" />
+      </Principal>
+      <Dependent Role="DonHang">
+        <PropertyRef Name="MaDVVC" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DonHang__MaKH__619B8048">
+    <End Role="KhachHang" Type="Self.KhachHang" Multiplicity="1" />
+    <End Role="DonHang" Type="Self.DonHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KhachHang">
+        <PropertyRef Name="MaKH" />
+      </Principal>
+      <Dependent Role="DonHang">
+        <PropertyRef Name="MaKH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TiepNhanYCVCDBContext" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="DonHangs" EntityType="Self.DonHang" />
+    <EntitySet Name="DonViVanChuyens" EntityType="Self.DonViVanChuyen" />
+    <EntitySet Name="KhachHangs" EntityType="Self.KhachHang" />
+    <AssociationSet Name="FK__DonHang__MaDVVC__60A75C0F" Association="Self.FK__DonHang__MaDVVC__60A75C0F">
+      <End Role="DonViVanChuyen" EntitySet="DonViVanChuyens" />
+      <End Role="DonHang" EntitySet="DonHangs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DonHang__MaKH__619B8048" Association="Self.FK__DonHang__MaKH__619B8048">
+      <End Role="KhachHang" EntitySet="KhachHangs" />
+      <End Role="DonHang" EntitySet="DonHangs" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
