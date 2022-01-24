@@ -14,9 +14,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fit.hcmus.WebAPI.Model.ChiTietDonHang;
 import com.fit.hcmus.WebAPI.Repository.ChiTietDonHangRepository;
 
+
 @RestController
 @RequestMapping("/api")
-@CrossOrigin(origins = "http://localhost:3000")
+
 public class ChiTietDonHangController 
 {
 	@Autowired
