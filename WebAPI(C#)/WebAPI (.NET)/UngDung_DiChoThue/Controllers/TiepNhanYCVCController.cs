@@ -38,12 +38,12 @@ namespace UngDung_DiChoThue.Controllers
         public HttpResponseMessage GetPYCKH(int MaKH)
         {
             string query = @"
-            select	DH.MaDH, KH.TenKH, KH.DiaChi, KH.SDT, DVVC.TenDVVC, DH.HinhThucThanhToan, DH.TrangThai, DH.PhiVanChuyen, DH.TongTien
+            select	DH.MaDH, KH.TenKH, KH.DiaChi, KH.SDT, DVVC.TenDVVC, DH.HinhThucThanhToan, DH.TrangThai, DH.YeuCauVanChuyen, DH.PhiVanChuyen, DH.TongTien
             from	DonHang DH, DonViVanChuyen DVVC, KhachHang KH
             where	DH.MaKH = KH.MaKH
 	            and DH.MaDVVC = DVVC.MaDVVC
-            group by DH.MaDH, KH.TenKH, KH.DiaChi, KH.SDT, DVVC.TenDVVC, DH.HinhThucThanhToan, DH.TrangThai, DH.PhiVanChuyen, DH.TongTien, KH.MaKH
-            having DH.TrangThai = N'Đang giao' or DH.TrangThai = N'Đổi trả'
+            group by DH.MaDH, KH.TenKH, KH.DiaChi, KH.SDT, DVVC.TenDVVC, DH.HinhThucThanhToan, DH.TrangThai, DH.YeuCauVanChuyen, DH.PhiVanChuyen, DH.TongTien, KH.MaKH
+            having DH.YeuCauVanChuyen = N'Chờ tiếp nhận' and DH.TrangThai = N'Đang giao' or DH.TrangThai = N'Đổi trả'
 	            and KH.MaKH = '" + MaKH + "' ";
             return GetData(query);
         }
@@ -52,13 +52,13 @@ namespace UngDung_DiChoThue.Controllers
             public HttpResponseMessage GetPYCDVVC(int MaDVVC)
             {
             string query = @"
-            select	DH.MaDH, KH.TenKH, KH.DiaChi, KH.SDT, DVVC.TenDVVC, DH.HinhThucThanhToan, DH.TrangThai, DH.PhiVanChuyen, DH.TongTien
+            select	DH.MaDH, KH.TenKH, KH.DiaChi, KH.SDT, DVVC.TenDVVC, DH.HinhThucThanhToan, DH.TrangThai, DH.YeuCauVanChuyen,  DH.PhiVanChuyen, DH.TongTien
             from	DonHang DH, DonViVanChuyen DVVC, KhachHang KH
             where	DH.MaKH = KH.MaKH
 	            and DH.MaDVVC = DVVC.MaDVVC
                 and DVVC.MaDVVC = '" + MaDVVC + "'" +
-       "group by DH.MaDH, KH.TenKH, KH.DiaChi, KH.SDT, DVVC.TenDVVC, DH.HinhThucThanhToan, DH.TrangThai, DH.PhiVanChuyen, DH.TongTien, DVVC.MaDVVC" +
-       " having DH.TrangThai = N'Đang giao' or DH.TrangThai = N'Đổi trả'";
+       "group by DH.MaDH, KH.TenKH, KH.DiaChi, KH.SDT, DVVC.TenDVVC, DH.HinhThucThanhToan, DH.TrangThai, DH.YeuCauVanChuyen, DH.PhiVanChuyen, DH.TongTien, DVVC.MaDVVC" +
+       " having DH.YeuCauVanChuyen = N'Chờ tiếp nhận' and DH.TrangThai = N'Đang giao' or DH.TrangThai = N'Đổi trả'";
                 return GetData(query);
 
             }
@@ -67,7 +67,7 @@ namespace UngDung_DiChoThue.Controllers
         public HttpResponseMessage GetDVVC1()
         {
             string query = @"
-            select	DH.MaDH, KH.TenKH, KH.DiaChi, KH.SDT, DVVC.TenDVVC, DH.HinhThucThanhToan, DH.TrangThai, DH.PhiVanChuyen, DH.TongTien
+            select	DH.MaDH, KH.TenKH, KH.DiaChi, KH.SDT, DVVC.TenDVVC, DH.HinhThucThanhToan, DH.TrangThai, DH.YeuCauVanChuyen, DH.PhiVanChuyen, DH.TongTien
             from	DonHang DH, DonViVanChuyen DVVC, KhachHang KH
             where	DH.MaKH = KH.MaKH
 	            and DH.MaDVVC = DVVC.MaDVVC";
@@ -78,7 +78,7 @@ namespace UngDung_DiChoThue.Controllers
         public HttpResponseMessage GetDVVC1(int MaDVVC)
         {
             string query = @"
-            select	DH.MaDH, KH.TenKH, KH.DiaChi, KH.SDT, DVVC.TenDVVC, DH.HinhThucThanhToan, DH.TrangThai, DH.PhiVanChuyen, DH.TongTien
+            select	DH.MaDH, KH.TenKH, KH.DiaChi, KH.SDT, DVVC.TenDVVC, DH.HinhThucThanhToan, DH.TrangThai, DH.YeuCauVanChuyen, DH.PhiVanChuyen, DH.TongTien
             from	DonHang DH, DonViVanChuyen DVVC, KhachHang KH
             where	DH.MaKH = KH.MaKH
 	            and DH.MaDVVC = DVVC.MaDVVC

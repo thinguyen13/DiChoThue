@@ -22,5 +22,6 @@ namespace UngDung_DiChoThue.Model
         public string HinhThucThanhToan { get; set; }
         public int MaDVVC { get; set; }
         public Nullable<double> PhiVanChuyen { get; set; }
+        public string YeuCauVanChuyen { get; set; }
     }
 }

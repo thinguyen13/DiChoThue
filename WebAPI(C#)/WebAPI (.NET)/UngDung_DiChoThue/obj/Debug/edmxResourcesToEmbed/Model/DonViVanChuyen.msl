@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="QL_DiChoThueModelStoreContainer" CdmEntityContainer="DonViVanChuyenDBContext">
+    <EntitySetMapping Name="DonViVanChuyens">
+      <EntityTypeMapping TypeName="QL_DiChoThueModel.DonViVanChuyen">
+        <MappingFragment StoreEntitySet="DonViVanChuyen">
+          <ScalarProperty Name="MaDVVC" ColumnName="MaDVVC" />
+          <ScalarProperty Name="TenDVVC" ColumnName="TenDVVC" />
+          <ScalarProperty Name="GiayPhepKinhDoanh" ColumnName="GiayPhepKinhDoanh" />
+          <ScalarProperty Name="SoTaiKhoanNganHang" ColumnName="SoTaiKhoanNganHang" />
+          <ScalarProperty Name="SDT" ColumnName="SDT" />
+          <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="PhiVanChuyen_KM" ColumnName="PhiVanChuyen_KM" />
+          <ScalarProperty Name="TaiKhoan" ColumnName="TaiKhoan" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

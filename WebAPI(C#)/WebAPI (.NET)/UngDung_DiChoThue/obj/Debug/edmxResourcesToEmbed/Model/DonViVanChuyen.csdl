@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QL_DiChoThueModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="DonViVanChuyen">
+    <Key>
+      <PropertyRef Name="MaDVVC" />
+    </Key>
+    <Property Name="MaDVVC" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenDVVC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="GiayPhepKinhDoanh" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="SoTaiKhoanNganHang" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SDT" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DiaChi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PhiVanChuyen_KM" Type="Double" />
+    <Property Name="TaiKhoan" Type="Int32" />
+  </EntityType>
+  <EntityContainer Name="DonViVanChuyenDBContext" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="DonViVanChuyens" EntityType="Self.DonViVanChuyen" />
+  </EntityContainer>
+</Schema>

@@ -87,3 +87,4 @@ public class PhieuDangKy_CungUng
 				", TrangThai=" + TrangThai +"]";
 	}
 }
+

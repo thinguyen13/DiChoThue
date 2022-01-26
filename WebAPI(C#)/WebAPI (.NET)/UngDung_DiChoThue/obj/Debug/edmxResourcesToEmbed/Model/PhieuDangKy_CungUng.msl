@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="PhieuDangKy_CungUngStoreContainer" CdmEntityContainer="PhieuDangKy_CungUngDBContext">
+    <EntitySetMapping Name="PhieuDangKy_CungUng">
+      <EntityTypeMapping TypeName="PhieuDangKy_CungUng.PhieuDangKy_CungUng">
+        <MappingFragment StoreEntitySet="PhieuDangKy_CungUng">
+          <ScalarProperty Name="MaPhieuDKCU" ColumnName="MaPhieuDKCU" />
+          <ScalarProperty Name="MaNCC" ColumnName="MaNCC" />
+          <ScalarProperty Name="NgayDK" ColumnName="NgayDK" />
+          <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -45,6 +45,7 @@ namespace UngDung_DiChoThue.Controllers
             dh.TrangThai = donhang.TrangThai;
             dh.MaKH = donhang.MaKH;
             dh.HinhThucThanhToan = donhang.HinhThucThanhToan;
+            dh.YeuCauVanChuyen = donhang.YeuCauVanChuyen;
             dh.MaDVVC = donhang.MaDVVC;
             dh.PhiVanChuyen = donhang.PhiVanChuyen;
             try 
@@ -77,6 +78,7 @@ namespace UngDung_DiChoThue.Controllers
                 dh.MaKH = donhang.MaKH;
                 dh.HinhThucThanhToan = donhang.HinhThucThanhToan;
                 dh.MaDVVC = donhang.MaDVVC;
+                dh.YeuCauVanChuyen = donhang.YeuCauVanChuyen;
                 dh.PhiVanChuyen = donhang.PhiVanChuyen;
                 db.Entry(dh).State = EntityState.Modified;
                 db.SaveChanges();

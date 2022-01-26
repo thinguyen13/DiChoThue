@@ -12,6 +12,7 @@
     <Property Name="HinhThucThanhToan" Type="nvarchar" MaxLength="50" />
     <Property Name="MaDVVC" Type="int" Nullable="false" />
     <Property Name="PhiVanChuyen" Type="float" />
+    <Property Name="YeuCauVanChuyen" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityContainer Name="DonHangModelStoreContainer">
     <EntitySet Name="DonHang" EntityType="Self.DonHang" Schema="dbo" store:Type="Tables" />

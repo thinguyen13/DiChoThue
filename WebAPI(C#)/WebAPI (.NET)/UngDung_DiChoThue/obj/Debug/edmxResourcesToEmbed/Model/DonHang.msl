@@ -4,6 +4,7 @@
     <EntitySetMapping Name="DonHangs">
       <EntityTypeMapping TypeName="DonHangModel.DonHang">
         <MappingFragment StoreEntitySet="DonHang">
+          <ScalarProperty Name="YeuCauVanChuyen" ColumnName="YeuCauVanChuyen" />
           <ScalarProperty Name="MaDH" ColumnName="MaDH" />
           <ScalarProperty Name="NgayLap" ColumnName="NgayLap" />
           <ScalarProperty Name="TongTien" ColumnName="TongTien" />

@@ -164,11 +164,13 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\DonHangController.cs" />
+    <Compile Include="Controllers\DonViVanChuyenController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoaiSanPhamController.cs" />
     <Compile Include="Controllers\MatHangThietYeuController.cs" />
     <Compile Include="Controllers\NhaCungCapController.cs" />
     <Compile Include="Controllers\NhuCauThucPhamCungKyController.cs" />
+    <Compile Include="Controllers\PhieuDangKy_CungUngController.cs" />
     <Compile Include="Controllers\SanPhamController.cs" />
     <Compile Include="Controllers\ThongTinDonHangController.cs" />
     <Compile Include="Controllers\ThuNhapDVVCController.cs" />
@@ -197,11 +199,44 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DonHang.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\DonViVanChuyen.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DonViVanChuyen.Context.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\DonViVanChuyen.cs">
-      <DependentUpon>TiepNhanYCVC.tt</DependentUpon>
+      <DependentUpon>DonViVanChuyen.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\DonViVanChuyen.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DonViVanChuyen.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Model\DonViVanChuyen1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DonViVanChuyen.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\KhachHang.cs">
       <DependentUpon>TiepNhanYCVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\PhieuDangKy_CungUng.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PhieuDangKy_CungUng.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\PhieuDangKy_CungUng.cs">
+      <DependentUpon>PhieuDangKy_CungUng.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\PhieuDangKy_CungUng.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PhieuDangKy_CungUng.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Model\PhieuDangKy_CungUng1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PhieuDangKy_CungUng.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\TiepNhanYCVC.Context.cs">
       <AutoGen>True</AutoGen>
@@ -238,6 +273,26 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>DonHang.edmx</DependentUpon>
       <LastGenOutput>DonHang1.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model\DonViVanChuyen.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DonViVanChuyen.edmx</DependentUpon>
+      <LastGenOutput>DonViVanChuyen.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model\DonViVanChuyen.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DonViVanChuyen.edmx</DependentUpon>
+      <LastGenOutput>DonViVanChuyen1.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model\PhieuDangKy_CungUng.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PhieuDangKy_CungUng.edmx</DependentUpon>
+      <LastGenOutput>PhieuDangKy_CungUng.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model\PhieuDangKy_CungUng.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PhieuDangKy_CungUng.edmx</DependentUpon>
+      <LastGenOutput>PhieuDangKy_CungUng1.cs</LastGenOutput>
     </Content>
     <Content Include="Model\TiepNhanYCVC.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -283,6 +338,20 @@
     </EntityDeploy>
     <Content Include="Model\DonHang.edmx.diagram">
       <DependentUpon>DonHang.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Model\DonViVanChuyen.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DonViVanChuyen.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Model\DonViVanChuyen.edmx.diagram">
+      <DependentUpon>DonViVanChuyen.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Model\PhieuDangKy_CungUng.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>PhieuDangKy_CungUng.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Model\PhieuDangKy_CungUng.edmx.diagram">
+      <DependentUpon>PhieuDangKy_CungUng.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

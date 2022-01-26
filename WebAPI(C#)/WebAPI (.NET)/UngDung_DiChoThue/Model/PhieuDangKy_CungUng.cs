@@ -12,16 +12,11 @@ namespace UngDung_DiChoThue.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class DonViVanChuyen
+    public partial class PhieuDangKy_CungUng
     {
-        public int MaDVVC { get; set; }
-        public string TenDVVC { get; set; }
-        public string GiayPhepKinhDoanh { get; set; }
-        public string SoTaiKhoanNganHang { get; set; }
-        public string SDT { get; set; }
-        public string DiaChi { get; set; }
-        public string Email { get; set; }
-        public Nullable<double> PhiVanChuyen_KM { get; set; }
-        public Nullable<int> TaiKhoan { get; set; }
+        public int MaPhieuDKCU { get; set; }
+        public int MaNCC { get; set; }
+        public Nullable<System.DateTime> NgayDK { get; set; }
+        public string TrangThai { get; set; }
     }
 }

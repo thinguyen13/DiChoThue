@@ -12,6 +12,7 @@
     <Property Name="HinhThucThanhToan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="MaDVVC" Type="Int32" Nullable="false" />
     <Property Name="PhiVanChuyen" Type="Double" />
+    <Property Name="YeuCauVanChuyen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityContainer Name="DonHangDBContext" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="DonHangs" EntityType="Self.DonHang" />

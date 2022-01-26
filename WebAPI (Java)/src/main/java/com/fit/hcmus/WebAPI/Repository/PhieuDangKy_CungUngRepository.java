@@ -11,9 +11,8 @@ import com.fit.hcmus.WebAPI.Model.PhieuDangKy_CungUng;
 
 public interface PhieuDangKy_CungUngRepository  extends JpaRepository<PhieuDangKy_CungUng, Integer>  
 {
+	@Query("SELECT v FROM v_PhieuDangKy_CungUng v")
+	List<PhieuDangKy_CungUng> findByMaPhieuDKCU(@Param("phieudk") Integer phieudk);
 
-	Optional<PhieuDangKy_CungUng> findById(String maphieudkcu);
-	/*@Query("SELECT v FROM v_PhieuDangKy_CungUng v")
-    List<PhieuDangKy_CungUng> findByMaDVVC(@Param("madvvc") Integer madvvc);*/
 
 }

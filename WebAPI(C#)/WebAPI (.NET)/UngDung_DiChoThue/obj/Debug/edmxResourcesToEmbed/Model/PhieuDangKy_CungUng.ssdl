@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PhieuDangKy_CungUng.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="PhieuDangKy_CungUng">
+    <Key>
+      <PropertyRef Name="MaPhieuDKCU" />
+    </Key>
+    <Property Name="MaPhieuDKCU" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MaNCC" Type="int" Nullable="false" />
+    <Property Name="NgayDK" Type="datetime" />
+    <Property Name="TrangThai" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityContainer Name="PhieuDangKy_CungUngStoreContainer">
+    <EntitySet Name="PhieuDangKy_CungUng" EntityType="Self.PhieuDangKy_CungUng" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>
